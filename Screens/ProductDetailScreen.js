@@ -1,18 +1,32 @@
-import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cartSlice';
 
 export default function ProductDetailScreen({ navigation }) {
+  const dispatch = useDispatch();
+
+  const sampleProduct = {
+    id: 1,
+    title: 'Sample Product',
+    price: 99.99,
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(sampleProduct));
+    navigation.navigate('Shopping Cart');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Product Detail Screen</Text>
       <Text style={styles.price}>Price: $99.99</Text>
       <Text style={styles.description}>
-        This is a sample product description for Milestone 1.
+        This is a sample product description for Milestone 2.
       </Text>
 
       <View style={styles.buttonRow}>
@@ -23,7 +37,10 @@ export default function ProductDetailScreen({ navigation }) {
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleAddToCart}
+        >
           <Text style={styles.buttonText}>Add to Shopping Cart</Text>
         </TouchableOpacity>
       </View>
@@ -53,7 +70,6 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     gap: 10,
   },
   button: {
