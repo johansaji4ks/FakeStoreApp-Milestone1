@@ -29,28 +29,10 @@ function ProductsStack() {
 function MainTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="Products"
-        component={ProductsStack}
-        options={{ headerShown: false }}
-      />
-
-      <Tab.Screen
-        name="Shopping Cart"
-        component={CartScreen}
-        options={{ tabBarBadge: 3 }}
-      />
-
-      <Tab.Screen
-        name="My Orders"
-        component={OrdersScreen}
-        options={{ tabBarBadge: 1 }}
-      />
-
-      <Tab.Screen
-        name="User Profile"
-        component={UserProfileScreen}
-      />
+      <Tab.Screen name="Products" component={ProductsStack} options={{ headerShown: false }} />
+      <Tab.Screen name="Shopping Cart" component={CartScreen} options={{ tabBarBadge: 3 }} />
+      <Tab.Screen name="My Orders" component={OrdersScreen} options={{ tabBarBadge: 1 }} />
+      <Tab.Screen name="User Profile" component={UserProfileScreen} />
     </Tab.Navigator>
   );
 }

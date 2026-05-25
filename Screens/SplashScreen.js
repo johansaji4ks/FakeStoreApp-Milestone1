@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function SplashScreen({ navigation }) {
-
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('MainTabs');
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
@@ -18,15 +17,14 @@ export default function SplashScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#0077cc',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0077cc',
   },
-
-  logo:{
-    fontSize:40,
-    fontWeight:'bold',
-    color:'white',
-  }
+  logo: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'white',
+  },
 });
