@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
-export default function ProductListScreen({ navigation }) {
+export default function ProductListScreen({ route, navigation }) {
+  const category = route?.params?.category || 'electronics';
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 

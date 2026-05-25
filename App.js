@@ -7,8 +7,10 @@ import { store } from './store/Store';
 
 import CartScreen from './screens/CartScreen';
 import CategoryScreen from './screens/CategoryScreen';
+import OrdersScreen from './screens/OrdersScreen';
 import ProductDetailScreen from './screens/ProductDetailScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import UserProfileScreen from './screens/UserProfileScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +33,23 @@ function MainTabs() {
         component={ProductsStack}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Shopping Cart" component={CartScreen} />
+
+      <Tab.Screen
+        name="Shopping Cart"
+        component={CartScreen}
+        options={{ tabBarBadge: 3 }}
+      />
+
+      <Tab.Screen
+        name="My Orders"
+        component={OrdersScreen}
+        options={{ tabBarBadge: 1 }}
+      />
+
+      <Tab.Screen
+        name="User Profile"
+        component={UserProfileScreen}
+      />
     </Tab.Navigator>
   );
 }

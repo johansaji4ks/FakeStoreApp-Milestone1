@@ -1,86 +1,55 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
 
 export default function ProductDetailScreen({ navigation }) {
   const dispatch = useDispatch();
 
-  const sampleProduct = {
-    id: 1,
+  const product = {
+    id: 99,
     title: 'Sample Product',
     price: 99.99,
-  };
-
-  const handleAddToCart = () => {
-    dispatch(addToCart(sampleProduct));
-    navigation.navigate('Shopping Cart');
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Product Detail Screen</Text>
-      <Text style={styles.price}>Price: $99.99</Text>
+      <Text style={styles.productName}>{product.title}</Text>
+      <Text style={styles.price}>Price: ${product.price}</Text>
+
       <Text style={styles.description}>
-        This is a sample product description for Milestone 2.
+        This is a sample product description for the Fake Store app.
       </Text>
 
-      <View style={styles.buttonRow}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleAddToCart}
-        >
-          <Text style={styles.buttonText}>Add to Shopping Cart</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          dispatch(addToCart(product));
+          Alert.alert('Success', 'Product added to shopping cart');
+          navigation.navigate('Shopping Cart');
+        }}
+      >
+        <Text style={styles.buttonText}>Add to Shopping Cart</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15,
-  },
-  price: {
-    fontSize: 20,
-    marginBottom: 15,
-  },
-  description: {
-    fontSize: 16,
-    marginBottom: 30,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    gap: 10,
-  },
+  container: { flex: 1, padding: 20, justifyContent: 'center' },
+  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 20 },
+  productName: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  price: { fontSize: 20, marginBottom: 15 },
+  description: { fontSize: 16, marginBottom: 25 },
   button: {
-    flex: 1,
     backgroundColor: '#0077cc',
-    padding: 14,
+    padding: 15,
     borderRadius: 8,
-    alignItems: 'center',
+    marginBottom: 12,
   },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
+  buttonText: { color: 'white', textAlign: 'center', fontWeight: 'bold' },
 });
