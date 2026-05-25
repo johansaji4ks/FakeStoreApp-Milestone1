@@ -10,6 +10,7 @@ import CategoryScreen from './screens/CategoryScreen';
 import OrdersScreen from './screens/OrdersScreen';
 import ProductDetailScreen from './screens/ProductDetailScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import SplashScreen from './screens/SplashScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 
 const Stack = createNativeStackNavigator();
@@ -58,7 +59,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MainTabs />
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="MainTabs" component={MainTabs} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );

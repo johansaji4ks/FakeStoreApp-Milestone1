@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 export default function CategoryScreen({ navigation }) {
@@ -45,7 +45,7 @@ export default function CategoryScreen({ navigation }) {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.categoryButton}
-            onPress={() => navigation.navigate('ProductList')}
+            onPress={() => navigation.navigate('ProductList', { category: item })}
           >
             <Text style={styles.categoryText}>{item}</Text>
           </TouchableOpacity>

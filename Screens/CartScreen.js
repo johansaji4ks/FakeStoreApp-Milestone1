@@ -1,10 +1,9 @@
 import {
-  Alert,
   FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,23 +25,17 @@ export default function CartScreen() {
   );
 
   const totalPrice = cartItems.reduce(
-    (sum, item) => sum + (item.price * item.quantity),
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 
-  const checkout = () => {
-    Alert.alert(
-      'Success',
-      'Checkout completed successfully'
-    );
-  };
+ const checkout = () => {
+  window.alert('Order Created: Checkout successful!');
+};
 
   return (
     <View style={styles.container}>
-
-      <Text style={styles.title}>
-        Shopping Cart
-      </Text>
+      <Text style={styles.title}>Shopping Cart</Text>
 
       {cartItems.length === 0 ? (
         <Text style={styles.empty}>
@@ -63,10 +56,8 @@ export default function CartScreen() {
             keyExtractor={(item) =>
               item.id.toString()
             }
-
             renderItem={({ item }) => (
               <View style={styles.cartItem}>
-
                 <Text style={styles.itemName}>
                   {item.title}
                 </Text>
@@ -80,9 +71,8 @@ export default function CartScreen() {
                 </Text>
 
                 <View style={styles.buttonRow}>
-
                   <TouchableOpacity
-                    style={styles.button}
+                    style={styles.smallButton}
                     onPress={() =>
                       dispatch(
                         decreaseQuantity(item.id)
@@ -95,7 +85,7 @@ export default function CartScreen() {
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={styles.button}
+                    style={styles.smallButton}
                     onPress={() =>
                       dispatch(
                         increaseQuantity(item.id)
@@ -106,9 +96,7 @@ export default function CartScreen() {
                       +
                     </Text>
                   </TouchableOpacity>
-
                 </View>
-
               </View>
             )}
           />
@@ -121,85 +109,80 @@ export default function CartScreen() {
               Check Out
             </Text>
           </TouchableOpacity>
-
         </>
       )}
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    flex:1,
+    padding:20,
+    backgroundColor:'#fff'
   },
 
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  title:{
+    fontSize:30,
+    fontWeight:'bold',
+    marginBottom:20
   },
 
-  empty: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginTop: 100,
+  empty:{
+    fontSize:20,
+    textAlign:'center',
+    marginTop:100
   },
 
-  summary: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
+  summary:{
+    fontSize:18,
+    fontWeight:'bold',
+    marginBottom:10
   },
 
-  cartItem: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 10,
+  cartItem:{
+    borderWidth:1,
+    borderColor:'#ccc',
+    padding:15,
+    borderRadius:10,
+    marginBottom:10
   },
 
-  itemName: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  itemName:{
+    fontSize:18,
+    fontWeight:'bold'
   },
 
-  buttonRow: {
-    flexDirection: 'row',
-    marginTop: 10,
-    gap: 10,
+  buttonRow:{
+    flexDirection:'row',
+    marginTop:10,
+    gap:10
   },
 
-  button: {
-    backgroundColor: '#0077cc',
-    width: 45,
-    padding: 10,
-    borderRadius: 8,
-    alignItems: 'center',
+  smallButton:{
+    backgroundColor:'#0077cc',
+    width:50,
+    padding:10,
+    borderRadius:8,
+    alignItems:'center'
   },
 
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
+  buttonText:{
+    color:'white',
+    fontWeight:'bold'
   },
 
-  checkoutButton: {
-    backgroundColor: 'green',
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
+  checkoutButton:{
+    backgroundColor:'green',
+    padding:15,
+    borderRadius:10,
+    marginTop:15
   },
 
-  checkoutText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-
+  checkoutText:{
+    color:'white',
+    textAlign:'center',
+    fontSize:18,
+    fontWeight:'bold'
+  }
 });

@@ -1,9 +1,27 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
+import {
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 
 export default function AuthScreen() {
+  const [isSignUp, setIsSignUp] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>
+        {isSignUp ? 'Sign Up' : 'Sign In'}
+      </Text>
+
+      {isSignUp && (
+        <TextInput
+          placeholder="Name"
+          style={styles.input}
+        />
+      )}
 
       <TextInput
         placeholder="Email"
@@ -17,7 +35,19 @@ export default function AuthScreen() {
       />
 
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>
+          {isSignUp ? 'Sign Up' : 'Sign In'}
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => setIsSignUp(!isSignUp)}
+      >
+        <Text style={styles.toggleText}>
+          {isSignUp
+            ? 'Already have an account? Switch to Sign In'
+            : "Don't have an account? Switch to Sign Up"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -46,13 +76,20 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#0077cc',
     padding: 15,
     borderRadius: 8,
+    marginBottom: 15,
   },
 
   buttonText: {
     color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+
+  toggleText: {
+    color: '#0077cc',
     textAlign: 'center',
     fontWeight: 'bold',
   },
